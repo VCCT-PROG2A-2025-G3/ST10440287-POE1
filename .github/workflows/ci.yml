@@ -1,28 +1,40 @@
 
-name: .NET Build
+name: .NET CI Workflow
 
 on:
   push:
     branches:
-      - Master     
+      - main   # Trigger on pushes to the main branch
+  pull_request:
+    branches:
+      - main   # Trigger on pull requests targeting the main branch
+  workflow_dispatch:   # Allows manual trigger of the workflow
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: windows-latest  # The type of runner to use (Windows in this case)
 
     steps:
-      - uses: actions/checkout@v3
+    # Checkout the repository
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: '8.0.x'  # quote dotted versions
+    # Set up .NET environment
+    - name: Set up .NET SDK
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.0.x'  # Use .NET version 8.0.x (latest stable)
 
-      - name: Restore dependencies
-        run: dotnet restore
+    # Restore project dependencies
+    - name: Restore dependencies
+      run: dotnet restore
 
-      - name: Build
-        run: dotnet build --no-restore
+    # Build the project (without restoring dependencies again)
+    - name: Build
+      run: dotnet build --no-restore
 
-      - name: Test
-        run: dotnet test --no-build --verbosity normal
+    # Run unit tests (without building again)
+    - name: Run tests
+      run: dotnet test --no-build --verbosity normal
+
+    # Optionally, you can add steps to publish artifacts or deploy here
