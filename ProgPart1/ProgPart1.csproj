@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BotAnswers.cs" />
     <Compile Include="HandleUserQuestions.cs" />
     <Compile Include="Music.cs" />
     <Compile Include="Program.cs" />
