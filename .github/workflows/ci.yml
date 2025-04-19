@@ -2,7 +2,7 @@ name: .NET Build
 
 on:
   push:
-    branches: [ main ]
+    branches: [ Master ]
 
 jobs:
   build:
