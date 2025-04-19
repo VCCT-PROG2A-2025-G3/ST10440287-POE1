@@ -77,7 +77,6 @@ namespace ProgPart1
                 BotAnswers.TypeText($"Sorry {userName}, I didn't quite understand that.", ConsoleColor.Green);
                 BotAnswers.TypeText("Could you please rephrase your question or ask about a specific topic like 'password safety', 'phishing', or 'safe browsing'?", ConsoleColor.Green);
             }
-
             // Reset console color to default
             Console.ResetColor();
         }
